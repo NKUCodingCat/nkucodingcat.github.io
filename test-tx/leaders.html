@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>中国政要，你认识几个？</title>
+<meta name="description" content="凤凰网出品-认识繁体字，敢来挑战吗？">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link href="http://y2.ifengimg.com/a/2014/1031/css.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="http://y0.ifengimg.com/base/jQuery/jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body>
+
+<div class="wrap">
+  <!-- 开始页begin -->
+  <div class="box01" id="wbegin">
+    <div class="cont">
+    <div class="font"></div>
+    <div class="text">
+      <div class="t02">
+从4个政要名字中选出正确的
+,10秒内不出手你就会被<b>out!</b></div>
+    </div>
+    <div class="btn" id="start">开始</div>
+    </div>
+    <div class="copyright"></div>
+  </div>
+  <!-- 开始页end -->
+  <!-- 游戏页begin -->
+  <div class="box02" id="main" style="display:none;">
+    <div class="pepole"></div>
+    <div class="time"><span>10</span>秒</div>
+    <div  class="flist">
+      <ul id="selects_box">
+        <li id='s_0' class="rect"></li>
+        <li id='s_1' class="rect"></li>
+        <li id='s_2' class="rect"></li>
+        <li id='s_3' class="rect"></li>
+      </ul>
+    </div>
+  </div>
+  <!-- 游戏页end -->
+  <!-- 结果页begin -->
+  <div class="box03" id="wend" style="display:none;">
+    <div class="cont">
+    <div class="down"></div>
+    <div class="lose" id="text_pic">
+      <div class="pic"></div>
+      <div class="textWrap">
+        <div class="text" id="text_top"></div>
+        <div class="txt" id="text_bottom"></div>
+      </div>
+    </div>
+    <div class="bcot">
+      <div class="btn01">再来一次</div>
+      <div id="whshare" class="btn02">炫耀实力</div>
+    </div>
+    </div>
+    <div class="copyright"></div>
+  </div>
+  <!-- 结果页end -->
+  <!-- 分享层begin -->
+  <div class="fx" id="fx" style="display:none"></div>
+  <div class="tip" id="tip" style="display:none"></div>
+  <!-- 分享层end -->
+
+</div>
+<script type="text/javascript" src="http://y0.ifengimg.com/a/2014/1030/jquery.imgloader.min.js"></script>
+<!--<script type="text/javascript" src="http://y1.ifengimg.com/imcpjs1031/newmain.js"></script>-->
+  <script>
+  (function($){
+   
+  var guess = {
+      init : function(){
+        var _this = this;
+        var flag = false;
+        this.count = 0;
+        this.start = $('#start');
+        this.wbegin = $('#wbegin');
+        this.content = $('#main');
+        this.endPage = $('#wend');
+        this.selectbox = $('#selects_box');
+        this.timeSpan = $('.time span');
+        this.rect = $('.rect'); 
+        this.pepole = $('.pepole');
+        this.whshare = $('#whshare');
+        this.fx = $('#fx');
+       this.tip = $('#tip');
+        this.textTop = $('#text_top');
+        this.textBottom = $('#text_bottom');
+        this.down = $('.down');
+        this.btn01 = $('.btn01');
+        this.textPic = $('#text_pic');
+        this.timer = null;
+        this.time = 11;
+        this.updateTime = 600;
+        this.nameArr = [];
+        this.level = '';
+this.firstQueue = [{"name":"习近平","src":"http://y1.ifengimg.com/imcpimg/1029/001.jpg"},
+    {"name":"李克强","src":"http://y1.ifengimg.com/imcpimg/1029/002.jpg"},
+    {"name":"张德江","src":"http://y1.ifengimg.com/imcpimg/1029/003.jpg"},
+    {"name":"俞正声","src":"http://y1.ifengimg.com/imcpimg/1029/004.jpg"},
+    {"name":"刘云山","src":"http://y1.ifengimg.com/imcpimg/1029/005.jpg"},
+    {"name":"王岐山","src":"http://y1.ifengimg.com/imcpimg/1029/006.jpg"},
+    {"name":"张高丽","src":"http://y1.ifengimg.com/imcpimg/1029/007.jpg"},
+    {"name":"李源潮","src":"http://y1.ifengimg.com/imcpimg/1029/008.jpg"},
+    {"name":"孙政才","src":"http://y1.ifengimg.com/imcpimg/1029/011.jpg"},
+    {"name":"汪洋", "src":"http://y1.ifengimg.com/imcpimg/1029/012.jpg"},
+    {"name":"张春贤","src":"http://y1.ifengimg.com/imcpimg/1029/013.jpg"},
+    {"name":"孟建柱","src":"http://y1.ifengimg.com/imcpimg/1029/014.jpg"},
+    {"name":"赵乐际","src":"http://y1.ifengimg.com/imcpimg/1029/015.jpg"},
+    {"name":"栗战书","src":"http://y1.ifengimg.com/imcpimg/1029/016.jpg"},
+    {"name":"郭金龙","src":"http://y1.ifengimg.com/imcpimg/1029/017.jpg"},
+    {"name":"韩正", "src":"http://y1.ifengimg.com/imcpimg/1029/018.jpg"},
+    {"name":"令计划","src":"http://y1.ifengimg.com/imcpimg/1029/019.jpg"},
+    {"name":"马凯","src":"http://y1.ifengimg.com/imcpimg/1029/020.jpg"},
+    {"name":"王沪宁","src":"http://y1.ifengimg.com/imcpimg/1029/021.jpg"},
+    {"name":"刘延东","src":"http://y1.ifengimg.com/imcpimg/1029/022.jpg"},
+    {"name":"刘奇葆","src":"http://y1.ifengimg.com/imcpimg/1029/023.jpg"},
+    {"name":"孙春兰","src":"http://y1.ifengimg.com/imcpimg/1029/024.jpg"},
+    {"name":"陆昊", "src":"http://y1.ifengimg.com/imcpimg/1029/042.jpg"},
+    {"name":"黄奇帆","src":"http://y1.ifengimg.com/imcpimg/1029/044.jpg"},
+    {"name":"李小鹏","src":"http://y1.ifengimg.com/imcpimg/1029/045.jpg"},
+    {"name":"王儒林","src":"http://y1.ifengimg.com/imcpimg/1029/047.jpg"},
+    {"name":"江泽民","src":"http://y1.ifengimg.com/imcpimg/1029/081.jpg"},
+    {"name":"李鹏", "src":"http://y1.ifengimg.com/imcpimg/1029/082.jpg"},
+    {"name":"朱镕基","src":"http://y1.ifengimg.com/imcpimg/1029/083.jpg"},
+    {"name":"李瑞环","src":"http://y1.ifengimg.com/imcpimg/1029/084.jpg"},
+    {"name":"尉健行","src":"http://y1.ifengimg.com/imcpimg/1029/085.jpg"},
+    {"name":"李岚清","src":"http://y1.ifengimg.com/imcpimg/1029/086.jpg"},
+    {"name":"胡锦涛","src":"http://y1.ifengimg.com/imcpimg/1029/087.jpg"},
+    {"name":"温家宝","src":"http://y1.ifengimg.com/imcpimg/1029/088.jpg"},
+    {"name":"贾庆林","src":"http://y1.ifengimg.com/imcpimg/1029/089.jpg"},
+    {"name":"曾庆红","src":"http://y1.ifengimg.com/imcpimg/1029/090.jpg"},
+    {"name":"黄菊","src":"http://y1.ifengimg.com/imcpimg/1029/091.jpg"},
+    {"name":"吴官正","src":"http://y1.ifengimg.com/imcpimg/1029/092.jpg"},
+    {"name":"李长春","src":"http://y1.ifengimg.com/imcpimg/1029/093.jpg"},
+    {"name":"罗干","src":"http://y1.ifengimg.com/imcpimg/1029/094.jpg"},
+    {"name":"贺国强","src":"http://y1.ifengimg.com/imcpimg/1029/095.jpg"}];
+     this.secondQueue = [{"name":"范长龙","src":"http://y1.ifengimg.com/imcpimg/1029/009.jpg"},
+    {"name":"许其亮","src":"http://y1.ifengimg.com/imcpimg/1029/010.jpg"},
+    {"name":"李建国","src":"http://y1.ifengimg.com/imcpimg/1029/025.jpg"},
+    {"name":"杜青林","src":"http://y1.ifengimg.com/imcpimg/1029/026.jpg"},
+    {"name":"赵洪祝","src":"http://y1.ifengimg.com/imcpimg/1029/027.jpg"},
+    {"name":"杨晶","src":"http://y1.ifengimg.com/imcpimg/1029/028.jpg"},
+    {"name":"张志军","src":"http://y1.ifengimg.com/imcpimg/1029/029.jpg"},
+    {"name":"王毅","src":"http://y1.ifengimg.com/imcpimg/1029/030.jpg"},
+    {"name":"常万全","src":"http://y1.ifengimg.com/imcpimg/1029/031.jpg"},
+    {"name":"郭声琨","src":"http://y1.ifengimg.com/imcpimg/1029/032.jpg"},
+    {"name":"楼继伟","src":"http://y1.ifengimg.com/imcpimg/1029/033.jpg"},
+    {"name":"陈政高","src":"http://y1.ifengimg.com/imcpimg/1029/034.jpg"},
+    {"name":"周小川","src":"http://y1.ifengimg.com/imcpimg/1029/035.jpg"},
+    {"name":"杨洁篪","src":"http://y1.ifengimg.com/imcpimg/1029/036.jpg"},
+    {"name":"周强","src":"http://y1.ifengimg.com/imcpimg/1029/037.jpg"},
+    {"name":"曹建明","src":"http://y1.ifengimg.com/imcpimg/1029/038.jpg"},
+    {"name":"董建华","src":"http://y1.ifengimg.com/imcpimg/1029/039.jpg"},
+    {"name":"何厚铧","src":"http://y1.ifengimg.com/imcpimg/1029/040.jpg"},
+    {"name":"韩启德","src":"http://y1.ifengimg.com/imcpimg/1029/041.jpg"},
+    {"name":"王安顺","src":"http://y1.ifengimg.com/imcpimg/1029/043.jpg"},
+    {"name":"巴特尔","src":"http://y1.ifengimg.com/imcpimg/1029/046.jpg"},
+    {"name":"巴音朝鲁","src":"http://y1.ifengimg.com/imcpimg/1029/048.jpg"},
+    {"name":"蒋超良","src":"http://y1.ifengimg.com/imcpimg/1029/049.jpg"},
+    {"name":"郭树清","src":"http://y1.ifengimg.com/imcpimg/1029/050.jpg"},
+    {"name":"李纪恒","src":"http://y1.ifengimg.com/imcpimg/1029/051.jpg"},
+    {"name":"赵正永","src":"http://y1.ifengimg.com/imcpimg/1029/052.jpg"},
+    {"name":"梁振英","src":"http://y1.ifengimg.com/imcpimg/1029/053.jpg"},
+    {"name":"崔世安","src":"http://y1.ifengimg.com/imcpimg/1029/054.jpg"},
+    {"name":"刘源","src":"http://y1.ifengimg.com/imcpimg/1029/055.jpg"},
+    {"name":"杨振武","src":"http://y1.ifengimg.com/imcpimg/1029/056.jpg"},
+    {"name":"张又侠","src":"http://y1.ifengimg.com/imcpimg/1029/057.jpg"},
+    {"name":"蔡赴朝","src":"http://y1.ifengimg.com/imcpimg/1029/058.jpg"},
+    {"name":"王珉","src":"http://y1.ifengimg.com/imcpimg/1029/059.jpg"},
+    {"name":"王君","src":"http://y1.ifengimg.com/imcpimg/1029/060.jpg"},
+    {"name":"王宪魁","src":"http://y1.ifengimg.com/imcpimg/1029/061.jpg"},
+    {"name":"夏宝龙","src":"http://y1.ifengimg.com/imcpimg/1029/062.jpg"},
+    {"name":"强卫","src":"http://y1.ifengimg.com/imcpimg/1029/063.jpg"},
+    {"name":"姜异康","src":"http://y1.ifengimg.com/imcpimg/1029/064.jpg"},
+    {"name":"郭庚茂","src":"http://y1.ifengimg.com/imcpimg/1029/065.jpg"},
+    {"name":"李鸿忠","src":"http://y1.ifengimg.com/imcpimg/1029/066.jpg"},
+    {"name":"徐守盛","src":"http://y1.ifengimg.com/imcpimg/1029/067.jpg"},
+    {"name":"罗保铭","src":"http://y1.ifengimg.com/imcpimg/1029/068.jpg"},
+    {"name":"彭清华","src":"http://y1.ifengimg.com/imcpimg/1029/069.jpg"},
+    {"name":"王东明","src":"http://y1.ifengimg.com/imcpimg/1029/070.jpg"},
+    {"name":"赵克志","src":"http://y1.ifengimg.com/imcpimg/1029/071.jpg"},
+    {"name":"王三运","src":"http://y1.ifengimg.com/imcpimg/1029/072.jpg"},
+    {"name":"骆惠宁","src":"http://y1.ifengimg.com/imcpimg/1029/073.jpg"},
+    {"name":"吴玉良","src":"http://y1.ifengimg.com/imcpimg/1029/074.jpg"},
+    {"name":"苗圩","src":"http://y1.ifengimg.com/imcpimg/1029/075.jpg"},
+    {"name":"吴爱英","src":"http://y1.ifengimg.com/imcpimg/1029/076.jpg"},
+    {"name":"蔡武","src":"http://y1.ifengimg.com/imcpimg/1029/077.jpg"},
+    {"name":"高虎城","src":"http://y1.ifengimg.com/imcpimg/1029/078.jpg"},
+    {"name":"陈雷","src":"http://y1.ifengimg.com/imcpimg/1029/079.jpg"},
+    {"name":"耿惠昌","src":"http://y1.ifengimg.com/imcpimg/1029/080.jpg"}];
+    this.isAndroid = navigator['userAgent'].match(/android/ig);
+    this.isIos = navigator['userAgent'].match(/iphone|ipod/ig);
+  this.weixin=navigator['userAgent'].match(/MicroMessenger/ig);
+        this.weixinShare(false);
+    //获取姓名
+    $(_this.firstQueue).each(function(k, v){
+      if(v.name!= '习近平' && v.name!= '李克强' && v.name!= '胡锦涛' && v.name!= '江泽民'){
+        _this.nameArr.push(v.name);
+      }
+    });
+
+    $(_this.secondQueue).each(function(k,v){
+        _this.nameArr.push(v.name);
+    });
+
+    this.start.on('touchend', function(){
+      _this.wbegin.hide();
+      _this.content.show();
+      _this.gameInit();
+    });
+
+    this.down.on('touchend', function(){
+      if(_this.isIos){
+     if(_this.weixin){
+          //_this.tip.show();
+       window.location.href= 'http://i.ifeng.com/qqyyb/appreurl?reurl='+encodeURIComponent('http://a.app.qq.com/o/simple.jsp?pkgname=com.ifeng.news2&g_f=991634');
+     } else {
+           window.location.href='https://itunes.apple.com/us/app/feng-huang-xin-wen/id395133418?ls=1&mt=8';
+     }
+       
+      }else if(_this.isAndroid){
+       if(_this.weixin){
+           window.location.href= 'http://i.ifeng.com/qqyyb/appreurl?reurl='+encodeURIComponent('http://a.app.qq.com/o/simple.jsp?pkgname=com.ifeng.news2&g_f=991634');
+     } else {
+           window.location.href='http://dl.app.ifengcdn.com/other/201410/5000_Android_2.3_V4.3.3_5292.apk';
+     }
+       }
+    });
+
+    this.btn01.on('touchend', function(){
+     window.location.reload();
+    });
+    this.whshare.on('touchstart',function () {
+        $(_this.fx[0]).show();
+    }); 
+    this.fx.on('touchstart',function () {
+       $(_this.fx[0]).hide();
+    });
+  this.tip.on('touchstart',function(){
+      $(this).hide();
+    })
+     /* 手机屏幕高度 */
+    this.isDesktop = navigator['userAgent'].match(/(ipad|iphone|ipod|android|windows phone)/i) ? false : true;;
+   
+    setTimeout(function(){_this.mobileHeight()},100);
+
+    },
+
+     gameInit : function(){
+       var _this = this;
+        this.selectbox.off('touchend');
+        this.createPage();
+        this.pepole.on('imgDown',function(){
+           _this.timeSpan.html(_this.time);          
+           _this.countdown();
+           _this.fillContent();
+        });       
+     },
+
+     createPage : function(){
+       var _this = this;
+        this.rect.removeClass('err').removeClass('cor');
+        if(this.firstQueue.length > 0){
+         this.showName = this.getRand(_this.firstQueue, 1);
+         //更新name obj数组，防止重复出现
+         this.firstQueue = this.showName.newData;
+        }else{
+         this.showName = this.getRand(_this.secondQueue, 1);
+         //更新name obj数组，防止重复出现
+         this.secondQueue = this.showName.newData;         
+        }
+        this.result = this.getRand(_this.nameArr, 4);
+        this.imgLoad(_this.showName.arr[0].src);
+     },
+
+     getRand : function(data, num){
+      var info = {},
+          arr = [],
+          index = [],
+          copyarr = [];
+       //复制数组
+      var copydata = copyarr.concat(data);
+
+       for(var i = 0; i < num; i++){
+         var randNum = Math.floor(Math.random() * copydata.length);
+             index.push(randNum);
+             arr[i] = copydata.splice(randNum,1)[0];
+       }
+
+       info['newData'] = copydata;
+       info['arr'] = arr;
+       info['index'] = index;
+       return info;
+     },
+
+     fillContent : function(){
+        var _this = this,
+             randpos = Math.floor(Math.random()*4),
+             pepoleName = this.showName.arr[0].name,
+             resultArr = this.result.arr;
+         console.log(pepoleName);
+         if(pepoleName == '习近平' || pepoleName == '李克强' || pepoleName == '胡锦涛' || pepoleName == '江泽民'){
+           $(resultArr).each(function(k,v){
+              $('#s_'+k).html(pepoleName);
+           });             
+         }else{
+           $(resultArr).each(function(k,v){
+              $('#s_'+k).html(v);
+           });
+             //如果不包含答案，就随机替换
+             if($.inArray(pepoleName,resultArr) < 0){
+           $('#s_'+randpos).html(pepoleName); 
+             }          
+         }
+       this.isRight(pepoleName);
+     },
+
+     isRight : function(pepoleName){
+       var _this = this;
+        this.selectbox.on('touchend', '.rect', function(){
+           if($(this).html() == pepoleName){
+              $(this).addClass('cor');
+              _this.selectbox.off('touchend');
+              _this.count++;
+             //通关
+              if(_this.count == 80){
+                setTimeout(function(){_this.gameover()},_this.updateTime); 
+                return;
+              }
+             if(_this.timer){
+              clearInterval(_this.timer);
+             }
+              setTimeout(function(){_this.createPage();}, _this.updateTime);
+           }else{
+              $(this).addClass('err');
+              _this.selectbox.off('touchend'); 
+             setTimeout(function(){_this.gameover()},_this.updateTime); 
+              
+           }
+
+        });       
+     },
+
+     countdown : function(){
+      var _this = this,
+          time = this.timeSpan.html(),
+          second = parseInt(time);
+
+          if(second <= 0){
+            this.gameover(); 
+            this.selectbox.off('touchend'); 
+
+          }else{
+            second = second - 1;
+            this.timeSpan.html(second);
+            //用匿名函数传递this
+            this.timer = setTimeout(function(){_this.countdown()}, 1000);             
+          }
+     },
+
+     gameover : function(){
+        var _this = this;
+        if(this.timer){
+          clearInterval(_this.timer);
+         }
+        this.message();
+        this.endPage.show();
+        this.content.hide();
+        _this.weixinShare(true);
+     },
+
+     message : function(){
+        var _this = this,
+            str = '';
+
+         if(this.count >= 0 && this.count <= 15){
+              str = '不好意思，时政菜鸟，请练练再重新来过吧！下载凤凰新闻客户端！';
+              this.level = '时政菜鸟';
+              this.textPic.removeClass().addClass('lose');
+         }else if(this.count > 15 && this.count <=30 ){
+              str = '政治发烧友，再多打2年工吧。下载凤凰新闻客户端！';
+              this.level = '时政发烧友';
+              this.textPic.removeClass().addClass('lose');
+         }else if(this.count > 30 && this.count <=45 ){
+              str = '您属于民间组织部长级别，在单位肯定是领导吧！下载凤凰新闻客户端！';
+              this.level = '民间组织部长';
+              this.textPic.removeClass().addClass('win');
+         }else if(this.count > 45 && this.count <= 60){
+              str = '您属于国家栋梁级别，太懂政治了！下载凤凰新闻客户端！';
+              this.level = '国家栋梁';
+              this.textPic.removeClass().addClass('win');
+         }else if(this.count > 60 && this.count < 95){
+              str = '大领导您来凤凰新闻客户端暗访，失敬失敬！下载凤凰新闻客户端！';
+              this.level = '大领导';
+              this.textPic.removeClass().addClass('win');
+         }else if(this.count == 95){
+               str = '你竟然全都答对了！大师在上，请受徒儿一拜！！下载凤凰新闻客户端！';
+               this.level = '大领导';
+              this.textPic.removeClass().addClass('win');
+         }
+         this.textTop.html('认识<span>'+this.count+'</span>个');
+         this.textBottom.html(str);
+     },
+
+     weixinShare : function(flag){
+        /*
+        微信分享
+        */
+        var weixin_title;  
+        if(flag){
+            weixin_title = '中国政要认脸挑战！我答对'+this.count+'道题，属于'+this.level+'级别，不服你来挑战。'; 
+        }else{
+            weixin_title = '中国政要，你认识几个？';
+        }
+        window.shareData = {
+            "imgUrl": "http://y1.ifengimg.com/ifengimcp/pic/20141030/15cce7c430a8c302ebd6_size4_w100_h100.jpg",//请更换真实地址
+            "timeLineLink": "http://api.3g.ifeng.com/leaders1",//请更换真实地址
+            "tTitle": weixin_title,
+            "tContent": "你不关心政治，但是政治关心你！这些政要，你认识几位？"
+        };
+        
+            
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        
+        WeixinJSBridge.on('menu:share:appmessage', function(argv) {
+            WeixinJSBridge.invoke('sendAppMessage', {
+                "img_url": window.shareData.imgUrl,
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function(res) {
+                document.location.href = mebtnopenurl;
+            })
+        });
+
+        WeixinJSBridge.on('menu:share:timeline', function(argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function(res) {
+                document.location.href = mebtnopenurl;
+            });
+        });
+    }, false);       
+    },
+
+  mobileHeight: function(){
+    var height  = this.isDesktop ? 1000 : ((window.innerWidth>window.innerHeight?window.innerWidth:window.innerHeight));
+    height = height + 'px';
+    $(".wrap").css('height', height);
+   },
+  imgLoad : function(src){
+    var _this = this; 
+      $.loadImg(src).then(function(img){
+         img.attr({"width":"125px","height":"144px"});
+         _this.pepole.html(img);
+         _this.pepole.trigger('imgDown');
+      }, function(){
+       console.log('could not image');
+      });
+  }
+
+  }
+
+  guess.init();
+})(jQuery)
+  
+  </script>
+<script type="text/javascript" src="http://y0.ifengimg.com/ifengimcp/sta/20131211/sta_collection_4_touch_v2.3.js"></script>
+ 
+  </body>
+</html>
