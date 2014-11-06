@@ -6,7 +6,7 @@
 $(document).ready(function(){
   $("button").click(function(){
    $.ajax({
-	url:"http://www.w3school.com.cn/example/jquery/demo_ajax_json.js",type:"GET",data:"id=abc",dataType:"json",success:function(msg){//遍历Json数据
+	url:"http://nkucodingcat.github.io/test-tx/self.json",type:"GET",data:"",dataType:"json",success:function(msg){//閬嶅巻Json鏁版嵁
 	$.each(msg,function(key,val){
 	alert(key+":"+val);});},
 	error:function(){alert("error");}});
@@ -18,7 +18,7 @@ $(document).ready(function(){
 
 <body>
 
-<button>获得 JSON 数据</button>
+<button>鑾峰緱 JSON 鏁版嵁</button>
 <p></p>
 
 
