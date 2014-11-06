@@ -10,8 +10,10 @@ $(document).ready(function(){
 	var  ta = "";
 	$.each(msg,function(key,val){
 	ta += "<tr>"+"<td>"+key+"<td>"+"<td>"+val+"<td>"+"<tr>";
-	});},
+	});
 	$("table").html(ta);
+	},
+	
 	error:function(){alert("error");}});
     
 	
