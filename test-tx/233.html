@@ -6,7 +6,7 @@
 $(document).ready(function(){
   $("button").click(function(){
    $.ajax({
-	url:"http://nkucodingcat.github.io/test-tx/self.json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
+	url:"self.json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
 	$.each(msg,function(key,val){
 	alert(key+":"+val);});},
 	error:function(){alert("error");}});
