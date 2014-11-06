@@ -5,13 +5,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $("button").click(function(){
-    $.getJSON("f.js",function(result){
-      $.each(result, function(i, field){
-        $("p").append(field + " ");
-      });
+   $.ajax({
+	url:"http://www.w3school.com.cn/example/jquery/demo_ajax_json.js",type:"GET",data:"id=abc",dataType:"json",success:function(msg){//±éÀúJsonÊý¾Ý
+	$.each(msg,function(key,val){
+	alert(key+":"+val);});},
+	error:function(){alert("error");}});
     });
   });
-});
+
 </script>
 </head>
 
