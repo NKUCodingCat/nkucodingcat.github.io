@@ -7,18 +7,23 @@ $(document).ready(function(){
   $("button").click(function(){
    $.ajax({
 	url:"self.json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
+	var  ta = "";
 	$.each(msg,function(key,val){
-	alert(key+":"+val);});},
+	ta += "<tr>"+"<td>"+key+"<td>"+"<td>"+val+"<td>"+"<tr>";
+	});},
+	$("table").html(ta)
 	error:function(){alert("error");}});
-    });
+    
+	
   });
-
+});
 </script>
 </head>
 
 <body>
 
 <button>获得 JSON 数据</button>
+<table><td>efjwseiofje</td></table>
 <p></p>
 
 
