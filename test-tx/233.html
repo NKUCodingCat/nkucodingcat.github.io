@@ -1,0 +1,24 @@
+
+
+<html><head>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.2.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $("button").click(function(){
+    $.getJSON("f.js",function(result){
+      $.each(result, function(i, field){
+        $("p").append(field + " ");
+      });
+    });
+  });
+});
+</script>
+</head>
+
+<body>
+
+<button>获得 JSON 数据</button>
+<p></p>
+
+
+</body></html>
