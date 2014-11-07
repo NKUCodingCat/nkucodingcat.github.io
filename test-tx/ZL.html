@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta name="generator" content=
+    "HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+      按时段查询
+    </title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style type="text/css">
+                    <!--
+                        .textbox {
+                                width: 80px; height: 31px; padding-top: 6px; padding-left: 12px;
+                                background-image: url("images/textbox.jpg");
+                        }
+                        -->
+                
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.2.min.js"
+    type="text/javascript">
+</script>
+    <script type="text/javascript">
+		function clean() {
+			var btns = document.links;
+			for (var i = 0; i < btns.length; i++) {
+				switch (btns[i].className) {
+				case "short":
+					btns[i].style.backgroundImage = 'url("images/btnShort.gif")';
+					break;
+				case "middle":
+					btns[i].style.backgroundImage = 'url("images/btnMiddle.gif")';
+					break;
+				case "long":
+					btns[i].style.backgroundImage = 'url("images/btnLong.gif")';
+					break;
+				}
+				if (btns[i].src != null) {
+					if (btns[i].src.indexOf("Home") != -1) {
+						btns[i].src = "images/btnHome.gif";
+					}
+					else if (btns[i].src.indexOf("Back") != -1) {
+						btns[i].src = "images/btnBack.gif";
+					}
+				}
+			}
+		}
+		
+		function input(num) {
+			error.innerText = ""
+			if (roomNum.innerText.length == 3) {
+				error.innerText = "教室号不超过3位"
+			}
+			else {
+				roomNum.innerText = roomNum.innerText + num;
+			}
+		}
+		
+		function del() {
+			error.innerText = ""
+			var len = roomNum.innerText.length;
+			if (len == 0) {
+				return;
+			}
+			else {
+				roomNum.innerText = roomNum.innerText.substr(0, len - 1);
+			}
+		}
+		
+		function clear() {
+			error.innerText = ""
+			roomNum.innerText = ""
+		}
+		
+		function comit() {
+			//location.href="studyByRoom.asp?room=" + roomNum.innerText;
+			$("div#TA").hide();
+			$("div#back").show();
+			$("div#Info").hide();
+			$("span#title").hide();
+		}
+		
+		function prev() {
+			//location.href="studyByRoom.asp?room=" + roomNum.innerText;
+			$("span#roomNum").html("");
+			$("div#TA").show();
+			$("div#back").hide();
+			$("div#Info").show();
+			$("span#title").show();
+		}
+    </script>
+  </head>
+  <body onselectstart="return false;" background="images/bgHall1.jpg">
+    <div style="position:absolute; left:20px; top:30px; z-index:1">
+      <span id="title" class=
+      "title">查询主楼教室今天的课程安排</span>
+    </div>
+    <div id="TA" style="position:absolute; left:300px; top:120px; z-index:1">
+      <table border="0" cellspacing="1" cellpadding="0">
+        <tbody>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(1)" class="short">1</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(2)" class="short">2</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(3)" class="short">3</a>
+            </td>
+          </tr>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(4)" class="short">4</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(5)" class="short">5</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(6)" class="short">6</a>
+            </td>
+          </tr>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(7)" class="short">7</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(8)" class="short">8</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(9)" class="short">9</a>
+            </td>
+          </tr>
+          <tr height="35px">
+            <td width="75px" colspan="2">
+              <a href="javascript:input(0)" class="short">0</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:del()" class="short">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div id="Info">
+      <div style="position:absolute; left:105px; top:133px; z-index:1;">
+        教室号：
+      </div>
+      <div style="position:absolute; left:180px; top:125px; z-index:1;">
+        <span id="roomNum" class="textbox"></span>
+      </div>
+      <div style="position:absolute; left:105px; top:165px; z-index:1">
+        <span id="error">例如：109, 303</span>
+      </div>
+      <div style="position:absolute; left:105px; top:195px; z-index:1">
+        <span id="error" style="color: red;"></span>
+      </div>
+      <div style="position:absolute; left:100px; top:231px; z-index:1">
+        <a name="query" href="javascript:comit()" class="long">查&nbsp;&nbsp;询</a>
+      </div>
+    </div>
+    <div id="back" style=
+    "position:absolute; left:450px; top:400px; z-index:1;display:none;">
+      <a name="query" href="javascript:prev()" class="long">返&nbsp;&nbsp;回</a>
+    </div><!--
+                <div style="position:absolute; left:450px; top:400px; z-index:1">
+                        <a href="default.asp" class="home"><img src="images/btnHome.gif"></a>
+                </div>     
+                -->
+  </body>
+</html>

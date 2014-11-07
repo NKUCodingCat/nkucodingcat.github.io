@@ -1,0 +1,41 @@
+body {
+	background-color: black; margin: 0; background-repeat: no-repeat;
+}
+a {
+	font-size: 14px; text-decoration: none; color: black;
+	text-align: center; padding-top: 9px; white-space: nowrap;
+	display:block; height: 31px; 
+	background-repeat: no-repeat;
+	behavior: url(function.htc);
+}
+a.short {
+	 width:70px;
+	 background-image: url("images/btnShort.gif");
+}
+a.middle {
+	 width:115px;
+	 background-image: url("images/btnMiddle.gif");
+}
+a.long {
+	 width:163px;
+	 background-image: url("images/btnLong.gif");
+}
+a.home {
+	padding-top: 0px;
+	width: 115px;
+}
+a.back {
+	padding-top: 0px;
+	width: 115px;
+}
+span.title {
+	filter: shadow(color=gray,direction=120);height: 32px;
+	font: 32px 微软雅黑;
+}
+.button {
+	cursor: hand;
+	width: 70px; height: 30px;
+}
+img {
+	border: 0;
+}
