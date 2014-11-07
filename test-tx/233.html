@@ -8,7 +8,7 @@ $(document).ready(function(){
   $("button").click(function(){
   
    $.ajax({
-	url:"/bin/ZL130.json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
+	url:"/test-tx/bin/ZL130.json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
 	var date = new Date();
 	var day  = date.getDay(); 
 	if (day == 0)day=7;
