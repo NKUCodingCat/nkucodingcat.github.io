@@ -1,24 +1,28 @@
 body {
-	background-color: black; margin: 0; background-repeat: no-repeat;
+	background-color: white; margin: 0; background-repeat: no-repeat;text-align:center;
 }
+div#TA{
+text-align:center;
+}
+
 a {
 	font-size: 14px; text-decoration: none; color: black;
 	text-align: center; padding-top: 9px; white-space: nowrap;
 	display:block; height: 31px; 
 	background-repeat: no-repeat;
-	behavior: url(function.htc);
 }
 a.short {
 	 width:70px;
-	 background-image: url("images/btnShort.gif");
+	 background-color: #DDDDDD;
 }
 a.middle {
 	 width:115px;
-	 background-image: url("images/btnMiddle.gif");
+	 background: blue;
 }
 a.long {
 	 width:163px;
-	 background-image: url("images/btnLong.gif");
+	background: #DDDDDD;
+	text-align:center;
 }
 a.home {
 	padding-top: 0px;
@@ -38,4 +42,11 @@ span.title {
 }
 img {
 	border: 0;
+}
+div#Info
+{
+	margin-top: 1%;
+}
+div#butt{
+margin: 1%;
 }

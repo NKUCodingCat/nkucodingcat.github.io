@@ -47,9 +47,10 @@
 		}
 		
 		function input(num) {
-			error.innerText = ""
+			//error.innerText = ""
 			if (roomNum.innerText.length == 3) {
-				error.innerText = "教室号不超过3位"
+				//error.innerText = "教室号不超过3位"
+				return;
 			}
 			else {
 				roomNum.innerText = roomNum.innerText + num;
@@ -57,7 +58,7 @@
 		}
 		
 		function del() {
-			error.innerText = ""
+			//error.innerText = ""
 			var len = roomNum.innerText.length;
 			if (len == 0) {
 				return;
@@ -96,13 +97,29 @@
 		}
     </script>
   </head>
-  <body onselectstart="return false;" background="images/bgHall1.jpg">
-    <div style="position:absolute; left:20px; top:30px; z-index:1">
+  <body onselectstart="return false;" bgcolor="#000000">
+    <div>
       <span id="title" class=
       "title">查询主楼教室今天的课程安排</span>
     </div>
-    <div id="TA" style="position:absolute; left:300px; top:120px; z-index:1">
-      <table border="0" cellspacing="1" cellpadding="0">
+	<div id="Info">
+      <div>
+        教室号：
+        <span id="roomNum" class="textbox"></span>
+		<br>
+        <span id="error">例如：109, 303</span>
+		<div id = "butt" align=center>
+			<a name="query" href="javascript:comit()" class="long">查&nbsp;&nbsp;询</a>
+		</div>
+	  </div>
+    </div>
+    <div id="back" style="display:none;align:center;">
+		<div id = "butt" align=center>
+			<a name="query" href="javascript:prev()" class="long">返&nbsp;&nbsp;回</a>
+		</div>
+	</div>
+    <div id="TA" >
+      <table border="0" cellspacing="1" cellpadding="0" align="center">
         <tbody>
           <tr height="35px">
             <td width="75px">
@@ -148,27 +165,7 @@
         </tbody>
       </table>
     </div>
-    <div id="Info">
-      <div style="position:absolute; left:105px; top:133px; z-index:1;">
-        教室号：
-      </div>
-      <div style="position:absolute; left:180px; top:125px; z-index:1;">
-        <span id="roomNum" class="textbox"></span>
-      </div>
-      <div style="position:absolute; left:105px; top:165px; z-index:1">
-        <span id="error">例如：109, 303</span>
-      </div>
-      <div style="position:absolute; left:105px; top:195px; z-index:1">
-        <span id="error" style="color: red;"></span>
-      </div>
-      <div style="position:absolute; left:100px; top:231px; z-index:1">
-        <a name="query" href="javascript:comit()" class="long">查&nbsp;&nbsp;询</a>
-      </div>
-    </div>
-    <div id="back" style=
-    "position:absolute; left:450px; top:400px; z-index:1;display:none;">
-      <a name="query" href="javascript:prev()" class="long">返&nbsp;&nbsp;回</a>
-    </div><!--
+    <!--
                 <div style="position:absolute; left:450px; top:400px; z-index:1">
                         <a href="default.asp" class="home"><img src="images/btnHome.gif"></a>
                 </div>     
