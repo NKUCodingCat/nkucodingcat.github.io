@@ -81,10 +81,30 @@
 				$("span#roomNum").html("");
 				return;
 			}
+			$.ajax({
+				url:"/test-tx/bin/ZL"+$("span#roomNum").html()+".json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
+				var date = new Date();
+				var day  = date.getDay(); 
+				if (day == 0)day=7;
+				var  ta = "";
+				var tmp = ""
+				for  (var i = 1;i<13;i++)
+				{
+					tmp = msg[day.toString()][i.toString()];
+					if (tmp.length==0)tmp = "None";
+					ta += "<tr>"+"<td>"+i.toString()+"</td>"+"<td>"+tmp+"</td>"+"</tr>";
+				}
+				$("#w").html(ta);
+				},
+			
+			error:function(){$("#w").html("NO SUCH CLASSROOM AVALIABLE");}}
+			);
+
 			$("div#TA").hide();
 			$("div#back").show();
 			$("div#Info").hide();
 			$("span#title").hide();
+			
 		}
 		
 		function prev() {
@@ -94,6 +114,7 @@
 			$("div#back").hide();
 			$("div#Info").show();
 			$("span#title").show();
+			$("#w").html("");
 		}
     </script>
   </head>
@@ -165,6 +186,7 @@
         </tbody>
       </table>
     </div>
+	<div ><table id = "w" border = ”1“></table></div>
     <!--
                 <div style="position:absolute; left:450px; top:400px; z-index:1">
                         <a href="default.asp" class="home"><img src="images/btnHome.gif"></a>
