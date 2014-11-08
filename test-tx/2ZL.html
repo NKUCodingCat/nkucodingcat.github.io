@@ -1,0 +1,180 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta name="generator" content=
+    "HTML Tidy for Windows (vers 14 February 2006), see www.w3.org">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>
+      按时段查询
+    </title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <style type="text/css">
+                    <!--
+                        .textbox {
+                                width: 80px; height: 31px; padding-top: 6px; padding-left: 12px;
+                                background-image: url("https://raw.githubusercontent.com/NKUCodingCat/nkucodingcat.github.io/master/test-tx/Images/textbox.jpg");
+                        }
+                        -->
+                
+    </style>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.7.2.min.js"
+    type="text/javascript">
+</script>
+    <script type="text/javascript">
+	
+		function input(num) {
+			//error.innerText = ""
+			if (roomNum.innerText.length == 0 && ((num != 'A')&&(num != 'B'))){
+				//error.innerText = "教室号不超过3位"
+				return;
+			}
+			else {
+				if (roomNum.innerText.length != 0 && ((num == 'A')||(num == 'B'))){return;}
+				if  (roomNum.innerText.length == 4 ){return;}
+				roomNum.innerText = roomNum.innerText + num;
+			}
+		}
+		
+		function del() {
+			//error.innerText = ""
+			var len = roomNum.innerText.length;
+			if (len == 0) {
+				return;
+			}
+			else {
+				roomNum.innerText = roomNum.innerText.substr(0, len - 1);
+			}
+		}
+		
+		
+		function comit() {
+			//location.href="studyByRoom.asp?room=" + roomNum.innerText;
+			if (($("span#roomNum").html().length) != 4 )
+			{
+				alert("输入长度非法");
+				$("span#roomNum").html("");
+				return;
+			}
+			$.ajax({
+				url:"/test-tx/bin/2ZL"+$("span#roomNum").html()+".json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
+				var date = new Date();
+				var day  = date.getDay(); 
+				if (day == 0)day=7;
+				var  ta = "";
+				var tmp = ""
+				for  (var i = 1;i<13;i++)
+				{
+					tmp = msg[day.toString()][i.toString()];
+					if (tmp.length==0)tmp = "None";
+					ta += "<tr>"+"<td>"+i.toString()+"</td>"+"<td>"+tmp+"</td>"+"</tr>";
+				}
+				$("#w").html(ta);
+				},
+			
+			error:function(){$("#w").html("NO SUCH CLASSROOM AVALIABLE");}}
+			);
+
+			$("div#TA").hide();
+			$("div#back").show();
+			$("div#Info").hide();
+			$("span#title").hide();
+			
+		}
+		
+		function prev() {
+			//location.href="studyByRoom.asp?room=" + roomNum.innerText;
+			$("span#roomNum").html("");
+			$("div#TA").show();
+			$("div#back").hide();
+			$("div#Info").show();
+			$("span#title").show();
+			$("#w").html("");
+		}
+    </script>
+  </head>
+  <body onselectstart="return false;" bgcolor="#000000">
+    <div>
+      <span id="title" class=
+      "title">查询二主教室今天的课程安排</span>
+    </div>
+	<div id="Info">
+      <div>
+        教室号：
+        <span id="roomNum" class="textbox"></span>
+		<br>
+        <span id="error">例如：109, 303</span>
+		<div id = "butt" align=center>
+			<a name="query" href="javascript:comit()" class="long">查&nbsp;&nbsp;询</a>
+		</div>
+	  </div>
+    </div>
+	
+    <div id="back" style="display:none;align:center;">
+		<div ><table id = "w" border = ”1“ align="center"></table></div>
+		<div id = "butt" align=center>
+			<a name="query" href="javascript:prev()" class="long">返&nbsp;&nbsp;回</a>
+		</div>
+	</div>
+    <div id="TA" >
+      <table border="0" cellspacing="1" cellpadding="0" align="center">
+        <tbody>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(1)" class="short">1</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(2)" class="short">2</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(3)" class="short">3</a>
+            </td>
+          </tr>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(4)" class="short">4</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(5)" class="short">5</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(6)" class="short">6</a>
+            </td>
+          </tr>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(7)" class="short">7</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(8)" class="short">8</a>
+            </td>
+            <td width="75px">
+              <a href="javascript:input(9)" class="short">9</a>
+            </td>
+          </tr>
+          <tr height="35px">
+            <td width="75px">
+              <a href="javascript:input(0)" class="short">0</a>
+            </td>
+			<td width="75px">
+				<a href="javascript:input('A')" class="short">A</a>
+			</td>
+			<td width="75px">
+				<a href="javascript:input('B')" class="short">B</a>
+			</td>
+			</tr>
+			<tr height="35px">
+            <td width="75px" colspan="2">
+              <a href="javascript:del()" class="short">删除</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+	
+    <!--
+                <div style="position:absolute; left:450px; top:400px; z-index:1">
+                        <a href="default.asp" class="home"><img src="images/btnHome.gif"></a>
+                </div>     
+                -->
+  </body>
+</html>
