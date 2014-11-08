@@ -47,13 +47,14 @@
 		}
 		function all(){
 			$("#w").html("");
+			$("#all").hide();
 			if (JSON.length ==0){$("#w").html("NO SUCH CLASSROOM AVALIABLE");}
 			else{
-				var  ta = "<tr><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></tr>";
+				var  ta = "<tr><td></td><td>星期一</td><td>星期二</td><td>星期三</td><td>星期四</td><td>星期五</td><td>星期六</td><td>星期日</td></tr>";
 				var tmp = ""
 				for (var i = 1;i<13;i++)
 				{
-					ta+="<tr><td>"+i.toString+"</td>";
+					ta+="<tr><td>"+i.toString()+"</td>";
 					for (var j = 1;j<8;j++)
 					{
 						tmp = JSON[j.toString()][i.toString()];
@@ -133,7 +134,7 @@
 		<div ><table id = "w" border = ”1“ align="center"></table></div>
 		<div id = "butt" align=center>
 			<a name="query" href="javascript:prev()" class="long">返&nbsp;&nbsp;回</a>
-			<a  href="javascript:all()" class="long">一&nbsp;周&nbsp;课&nbsp;表</a>
+			<a  id = "all" href="javascript:all()" class="long">一&nbsp;周&nbsp;课&nbsp;表</a>
 		</div>
 	</div>
     <div id="TA" >
