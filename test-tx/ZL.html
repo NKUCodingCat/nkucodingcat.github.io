@@ -75,6 +75,7 @@
 			}
 			$.ajax({
 				url:"/test-tx/bin/ZL"+$("span#roomNum").html()+".json",type:"GET",data:"",dataType:"json",success:function(msg){//遍历Json数据
+				JSON = msg;
 				var date = new Date();
 				var day  = date.getDay(); 
 				if (day == 0)day=7;
@@ -89,7 +90,7 @@
 				$("#w").html(ta);
 				},
 			
-			error:function(){$("#w").html("NO SUCH CLASSROOM AVALIABLE");}}
+			error:function(){{JSON = "";$("#w").html("NO SUCH CLASSROOM AVALIABLE");}}
 			);
 			$("#all").show();
 			$("div#TA").hide();
