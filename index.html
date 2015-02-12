@@ -25,6 +25,7 @@
 			&emsp;诸君自便<br>
 			&emsp;以上
 	</p>
+	
 	<h3><a name="NKU-SSS" class="anchor" href="#NKU-SSS"><span class="octicon octicon-link"></span></a>NKU-SSS Project</h3>
 	
 	<p>&emsp;Download: <br>&emsp;<a href="https://github.com/NKUCodingCat/NKU-SSS/archive/master.zip">From Github</a>&emsp;<a href = "http://vps1.nkucodingcat.com/test/cdn/index.php">US Mirror 1</a><a href = "http://github.com/NKUCodingCat/">(By NKUCodingCat)</a>&emsp;<a href = "http://clatter.cn/proj/nkucdn/">US Mirror 2  ipv4</a>/<a href = "http://ipv6.clatter.cn/proj/nkucdn/">ipv6</a> <a href = "http://github.com/Neon4o4/">(By Neon4o4)</a>
@@ -59,15 +60,61 @@
 			&emsp;发到网上不出一天就特么被查水表了……fxxk！<br>
 			&emsp;学校那群人改个网页慢的要死特么找我就这么快，什么心态啊我擦<br>
 			&emsp;好吧做都做了干脆直接做死你们，然后我找白大神聊关于做个抢课机的事，然后我们就做出来了</p>
-	<br>	
+	<br>
+	<h3><a name="BarrageMachine" class="anchor" href="#BarrageMachine"><span class="octicon octicon-link"></span></a>Barrage Machine</h3>
+	<p>
+		&emsp;诶……这个一开始的时候只是想做和B站弹幕机一样的东西出来……所以呢就用C#写了一个……<br>
+		&emsp;但是呢想想做网页是一件非常无聊的事情所以我们就用微信来写吧<br>
+		&emsp;性能什么的始终还是问题呢，C#的性能和服务器的性能都是问题……<br>
+		&emsp;核心部分的代码基本就是这段：<br>
+		<pre><code>......
+this.ShowInTaskbar = false;
+this.FormBorderStyle = FormBorderStyle.None;
+this.WindowState = FormWindowState.Maximized;
+this.TopMost = true;
+SetWindowLong(Handle, GWL_EXSTYLE, GetWindowLong(Handle, GWL_EXSTYLE) | WS_EX_TRANSPARENT | WS_EX_LAYERED);
+this.BackColor = Color.Black;
+this.TransparencyKey = Color.Black;
+......</pre></code><br>
+		&emsp;交换数据当然是用json什么的说~~~<br><br>
+		<pre><code>{
+   "1838": {
+               "Content": "\u5c0f\u96ea\u59d0\u59d0\u840c\u840c\u54d2", 
+               "Color": "CCCCCC", 
+               "Time": 1423733923.226355
+           }
+   "1839": {
+               "Content": "\u5c0f\u96ea\u59d0\u59d0\u840c\u840c\u54d2", 
+               "Color": "C67ABB", 
+               "Time": 1423733927.548154
+           }
+    ......
+}</pre></code>
+		<br>
+		&emsp;基本上就是一个全屏透明鼠标穿透的窗口，然后上面就有一堆字滚过去……这样子……<br>
+		&emsp;其实完全没什么技术含量对吧……嗯我也知道……<br>
+		&emsp;Github项目主页: <a href="https://github.com/NKUCodingCat/barrage-Machine">Home</a>
+	</p>
+	<h3><a name="HerSNS" class="anchor" href="#HerSNS"><span class="octicon octicon-link"></span></a>Her_SNS</h3>
+	<p>
+		<pre>WARNING:无节制使用这个技能可能会导致孤独终生，请谨慎使用</pre><br>
+		&emsp;一开始只是看到知乎上面有个人说写了个爬虫爬妹子的知乎然后监视动态，但是这货是拿python写的摔，身为一只linux服务器【还不是因为没钱买win的服务器么哼】重度患者，还是拿python重新造轮子吧<br>
+		&emsp;知乎不用登陆基本都能看到妹子的主页所以lxml强行解析就好了【摊手】<br>
+		&emsp;微博的话，必须要登陆了账号以后才行，而且不能看特定的某个人【坑爹的api= =】，所以只能刷自己的时间线然后把某人的微博找出来<br>
+		&emsp;剩下的事情~就是发个邮件啦~smtplib大法好~~<br>
+		&emsp;Github项目主页: <a href="https://github.com/NKUCodingCat/Her_SNS">Home</a>
+
+	</p>
 	<h3><a name="ClassRoom" class="anchor" href="#ClassRoom"><span class="octicon octicon-link"></span></a>NKU-Free_ClassRoom (Update Stopped)</h3>
 	<p>
-	嘛……这个只是一个无聊时候用json当数据库js做前端做出来的一个东西……算是……诶……练手吧也许……反正做的很不好然后数据是python跑出来的但是由于教务处那课表本身就不靠谱所以我的数据也不靠谱所以就这样弃坑吧嘤嘤嘤！
+	&emsp;嘛……这个只是一个无聊时候用json当数据库js做前端做出来的一个东西……算是……诶……练手吧也许……反正做的很不好然后数据是python跑出来的但是由于教务处那课表本身就不靠谱所以我的数据也不靠谱所以就这样弃坑吧嘤嘤嘤！
 	<br>
 	&emsp;<a href = "/test-tx/ZL.html">主楼教室查询</a>
 	<br>
 	&emsp;<a href = "/test-tx/2ZL.html">二主教室查询</a>
 	<br>
+	&emsp;计算json所用的程序脚本在<a href="https://github.com/NKUCodingCat/Something-Else/tree/master/Class-List-Py">这里</a>，依赖python的xlrd/xlwt库【其实明明是不知道怎么读access】<br>
+	&emsp;网页文件在<a href="https://github.com/NKUCodingCat/nkucodingcat.github.io/tree/master/test-tx">这里</a>
 	</p>
 	<h3><a name="ToSomeone" class="anchor" href="#ToSomeone"><span class="octicon octicon-link"></span></a>To Someone</h3>
 	<p>&emsp;<a href="http://love.nkucodingcat.com/">情人节了呢~喵~ ＞▽＜ </a></p>
