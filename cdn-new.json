@@ -29,10 +29,7 @@
 		"Home": "https://github.com/Neon4o4/NKU-GPACalculator",
 		"Branch": "master",
 		"Id": "3",
-		"File": [["/NKU-GPACalculator-Win.rar",
-		"/NKU-GPACalculator-Win.rar"],
-		["/NKU-GPACalculator-OSX.zip",
-		"/NKU-GPACalculator-OSX.zip"]]
+		"File": []
 	},
 	{
 		"Home": "https://github.com/azzvx/gogotester",
